@@ -74,11 +74,21 @@ public class Menu extends javax.swing.JFrame {
         mItem_nuevoUser.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_nuevoUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo-cliente.png"))); // NOI18N
         mItem_nuevoUser.setText("Nuevo Usuario");
+        mItem_nuevoUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_nuevoUserActionPerformed(evt);
+            }
+        });
         menu_Usuario.add(mItem_nuevoUser);
 
         mItem_gestionarUsers.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_gestionarUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/configuraciones.png"))); // NOI18N
         mItem_gestionarUsers.setText("Gestionar Usuarios");
+        mItem_gestionarUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_gestionarUsersActionPerformed(evt);
+            }
+        });
         menu_Usuario.add(mItem_gestionarUsers);
 
         jMenuBar1.add(menu_Usuario);
@@ -91,16 +101,31 @@ public class Menu extends javax.swing.JFrame {
         mItem_nuevoProduc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_nuevoProduc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo-producto.png"))); // NOI18N
         mItem_nuevoProduc.setText("Nuevo Producto");
+        mItem_nuevoProduc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_nuevoProducActionPerformed(evt);
+            }
+        });
         menu_Producto.add(mItem_nuevoProduc);
 
         mItem_gestionarProduc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_gestionarProduc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/producto.png"))); // NOI18N
         mItem_gestionarProduc.setText("Gestionar Productos");
+        mItem_gestionarProduc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_gestionarProducActionPerformed(evt);
+            }
+        });
         menu_Producto.add(mItem_gestionarProduc);
 
         mItem_actualizarStock.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_actualizarStock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo.png"))); // NOI18N
         mItem_actualizarStock.setText("Actualizar Stock");
+        mItem_actualizarStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_actualizarStockActionPerformed(evt);
+            }
+        });
         menu_Producto.add(mItem_actualizarStock);
 
         jMenuBar1.add(menu_Producto);
@@ -113,11 +138,21 @@ public class Menu extends javax.swing.JFrame {
         mItem_nuevoCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_nuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo-cliente.png"))); // NOI18N
         mItem_nuevoCliente.setText("Nuevo Cliente");
+        mItem_nuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_nuevoClienteActionPerformed(evt);
+            }
+        });
         menu_Cliente.add(mItem_nuevoCliente);
 
         mItem_gestionarClientes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_gestionarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cliente.png"))); // NOI18N
         mItem_gestionarClientes.setText("Gestionar Clientes");
+        mItem_gestionarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_gestionarClientesActionPerformed(evt);
+            }
+        });
         menu_Cliente.add(mItem_gestionarClientes);
 
         jMenuBar1.add(menu_Cliente);
@@ -211,6 +246,48 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mItem_nuevoUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_nuevoUserActionPerformed
+        NuevoUser nuevoUsuario = new NuevoUser();
+        menu_interno.add(nuevoUsuario);
+        nuevoUsuario.setVisible(true);
+    }//GEN-LAST:event_mItem_nuevoUserActionPerformed
+
+    private void mItem_gestionarUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_gestionarUsersActionPerformed
+        AdministrarUser usuarios = new AdministrarUser();
+        menu_interno.add(usuarios);
+        usuarios.setVisible(true);
+    }//GEN-LAST:event_mItem_gestionarUsersActionPerformed
+
+    private void mItem_nuevoProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_nuevoProducActionPerformed
+        NewProducto nuevoProducto = new NewProducto();
+        menu_interno.add(nuevoProducto);
+        nuevoProducto.setVisible(true);
+    }//GEN-LAST:event_mItem_nuevoProducActionPerformed
+
+    private void mItem_gestionarProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_gestionarProducActionPerformed
+        AdministrarProducto productos = new AdministrarProducto();
+        menu_interno.add(productos);
+        productos.setVisible(true);
+    }//GEN-LAST:event_mItem_gestionarProducActionPerformed
+
+    private void mItem_actualizarStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_actualizarStockActionPerformed
+        stock inventario = new stock();
+        menu_interno.add(inventario);
+        inventario.setVisible(true);
+    }//GEN-LAST:event_mItem_actualizarStockActionPerformed
+
+    private void mItem_nuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_nuevoClienteActionPerformed
+       NewCliente nuevoCliente = new NewCliente();
+       menu_interno.add(nuevoCliente);
+       nuevoCliente.setVisible(true);
+    }//GEN-LAST:event_mItem_nuevoClienteActionPerformed
+
+    private void mItem_gestionarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_gestionarClientesActionPerformed
+        AdministrarCliente clientes = new AdministrarCliente();
+        menu_interno.add(clientes);
+        clientes.setVisible(true);
+    }//GEN-LAST:event_mItem_gestionarClientesActionPerformed
 
 //    /**
 //     * @param args the command line arguments
