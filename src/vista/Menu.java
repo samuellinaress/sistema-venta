@@ -192,6 +192,11 @@ public class Menu extends javax.swing.JFrame {
         mItem_nuevaVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_nuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/anadir.png"))); // NOI18N
         mItem_nuevaVenta.setText("Nueva Venta");
+        mItem_nuevaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_nuevaVentaActionPerformed(evt);
+            }
+        });
         menu_Facturar.add(mItem_nuevaVenta);
 
         mItem_gestionarVentas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -332,6 +337,12 @@ public class Menu extends javax.swing.JFrame {
         menu_interno.add(historial);
         historial.setVisible(true);
     }//GEN-LAST:event_mItem_verHistorialActionPerformed
+
+    private void mItem_nuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_nuevaVentaActionPerformed
+        interFacturacion factura = new interFacturacion();
+        menu_interno.add(factura);
+        factura.setVisible(true);
+    }//GEN-LAST:event_mItem_nuevaVentaActionPerformed
 
 //    /**
 //     * @param args the command line arguments
