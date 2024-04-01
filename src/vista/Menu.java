@@ -165,11 +165,21 @@ public class Menu extends javax.swing.JFrame {
         mItem_nuevaCategoria.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_nuevaCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo.png"))); // NOI18N
         mItem_nuevaCategoria.setText("Nueva Categoria");
+        mItem_nuevaCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_nuevaCategoriaActionPerformed(evt);
+            }
+        });
         menu_Categoria.add(mItem_nuevaCategoria);
 
         mItem_gestionarCategorias.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_gestionarCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/categorias.png"))); // NOI18N
         mItem_gestionarCategorias.setText("Gestionar Categorias");
+        mItem_gestionarCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_gestionarCategoriasActionPerformed(evt);
+            }
+        });
         menu_Categoria.add(mItem_gestionarCategorias);
 
         jMenuBar1.add(menu_Categoria);
@@ -187,6 +197,11 @@ public class Menu extends javax.swing.JFrame {
         mItem_gestionarVentas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_gestionarVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/configuraciones.png"))); // NOI18N
         mItem_gestionarVentas.setText("Gestionar Ventas");
+        mItem_gestionarVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_gestionarVentasActionPerformed(evt);
+            }
+        });
         menu_Facturar.add(mItem_gestionarVentas);
 
         jMenuBar1.add(menu_Facturar);
@@ -226,6 +241,11 @@ public class Menu extends javax.swing.JFrame {
         mItem_verHistorial.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_verHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/historial1.png"))); // NOI18N
         mItem_verHistorial.setText("Ver Historial ");
+        mItem_verHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_verHistorialActionPerformed(evt);
+            }
+        });
         menu_Historial.add(mItem_verHistorial);
 
         jMenuBar1.add(menu_Historial);
@@ -288,6 +308,30 @@ public class Menu extends javax.swing.JFrame {
         menu_interno.add(clientes);
         clientes.setVisible(true);
     }//GEN-LAST:event_mItem_gestionarClientesActionPerformed
+
+    private void mItem_nuevaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_nuevaCategoriaActionPerformed
+       intCategoria categoria = new intCategoria();
+       menu_interno.add(categoria);
+       categoria.setVisible(true);
+    }//GEN-LAST:event_mItem_nuevaCategoriaActionPerformed
+
+    private void mItem_gestionarCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_gestionarCategoriasActionPerformed
+        GestionarCategoria categorias = new GestionarCategoria();
+        menu_interno.add(categorias);
+        categorias.setVisible(true);
+    }//GEN-LAST:event_mItem_gestionarCategoriasActionPerformed
+
+    private void mItem_gestionarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_gestionarVentasActionPerformed
+        GestionarVentas ventas = new GestionarVentas();
+        menu_interno.add(ventas);
+        ventas.setVisible(true);
+    }//GEN-LAST:event_mItem_gestionarVentasActionPerformed
+
+    private void mItem_verHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_verHistorialActionPerformed
+        Historial historial = new Historial();
+        menu_interno.add(historial);
+        historial.setVisible(true);
+    }//GEN-LAST:event_mItem_verHistorialActionPerformed
 
 //    /**
 //     * @param args the command line arguments
