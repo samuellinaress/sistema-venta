@@ -1,5 +1,5 @@
 package vista;
-import java.awt.EventQueue;
+import controlador.Ctrl_Cliente;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,13 +9,11 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JCheckBox;
-import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JInternalFrame;
+import modelo.Cliente;
 
 public class NewCliente extends JInternalFrame {
 
@@ -132,16 +130,33 @@ public class NewCliente extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "Complete todos los campos");
 					
 				}else {
-				
+                                    Ctrl_Cliente controlCliente = new Ctrl_Cliente();
+                                    
+                                        if(!controlCliente.clienteExistente(textCedula)){
+                                            
+                                            Cliente nuevoCliente = new Cliente();
+                                            nuevoCliente.setNombre(textNombre.getText().trim());
+                                            nuevoCliente.setApellido(textApellido.getText().trim());
+                                            nuevoCliente.setCedula(textCedula.getText().trim());
+                                            nuevoCliente.setTelefono(textTelefono.getText().trim());
+                                            nuevoCliente.setDireccion(textDireccion.getText().trim());
+                                            nuevoCliente.setEstado(1);
+                                        
+                                            if(controlCliente.agregarCliente(nuevoCliente)){
+                                            
+                                                JOptionPane.showMessageDialog(null, "Usuario guardado");
+                                                textNombre.setText("");
+                                                textApellido.setText("");
+                                                textTelefono.setText("");
+                                                textCedula.setText("");
+                                                textDireccion.setText("");
+                                            }
 					
-					
-					JOptionPane.showMessageDialog(null, "Usuario guardado");
-					
-					textNombre.setText("");
-					textApellido.setText("");
-					textTelefono.setText("");
-					textCedula.setText("");
-					textDireccion.setText("");
+                                        }else{
+                                            
+                                            JOptionPane.showMessageDialog(null, "Este cliente ya existe");
+                                        }
+                                  
 				}
 				
 			}
