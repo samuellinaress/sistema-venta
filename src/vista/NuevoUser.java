@@ -1,8 +1,14 @@
 package vista;
 import java.awt.EventQueue;
 
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Ctrl_Usuario;
+import modelo.Usuario;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,8 +23,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JInternalFrame;
 
+/**
+*
+* @author Angel Miguel de la Rosa
+*/
 public class NuevoUser extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -29,30 +38,30 @@ public class NuevoUser extends JInternalFrame {
 	private JTextField textUser;
 	private JPasswordField textPassword;
 	private JTextField Visible;
-
+	
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					NuevoUser frame = new NuevoUser();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					NuevoUser frame = new NuevoUser();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the frame.
 	 */
 	public NuevoUser() {
-		//setTitle("Nuevo usuario");
-                super("Nuevo Ususario",false,true,false,true);
-		setDefaultCloseOperation(NuevoUser.DISPOSE_ON_CLOSE);
+		setIconifiable(true);
+		setClosable(true);
+		setTitle("Nuevo usuario");
 		setBounds(100, 100, 496, 441);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -136,8 +145,6 @@ public class NuevoUser extends JInternalFrame {
 		textUser.setBounds(167, 208, 190, 28);
 		panel.add(textUser);
 		
-		
-		
 		JCheckBox JCheckBoxVer = new JCheckBox("");
 		JCheckBoxVer.addMouseListener(new MouseAdapter() {
 			@Override
@@ -175,37 +182,30 @@ public class NuevoUser extends JInternalFrame {
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textNombre.getText().isEmpty()|| textApellido.getText().isEmpty()|| textTelefono.getText().isEmpty()||
-						textUser.getText().isEmpty()|| textPassword.getText().isEmpty()){
-					
-					JOptionPane.showMessageDialog(null, "Complete todos los campos");
-					
-				}else {
-				
-					
-					
-					JOptionPane.showMessageDialog(null, "Usuario guardado");
-					
-					textNombre.setText("");
-					textApellido.setText("");
-					textTelefono.setText("");
-					textUser.setText("");
-					textPassword.setText("");
-				}
-				
-			
-		}
-			
+				Ctrl_Usuario ctrl_Usuario = new Ctrl_Usuario();
+				ctrl_Usuario.guardar(textNombre, textApellido, textUser, textPassword, textTelefono);
+				limpiar();
+			}	
 		});
 		btnGuardar.setToolTipText("");
 		btnGuardar.setForeground(new Color(0, 0, 0));
 		btnGuardar.setBackground(new Color(0, 255, 64));
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnGuardar.setBounds(179, 311, 133, 33);
-		panel.add(btnGuardar);
-		
-		
-		
-		
+		panel.add(btnGuardar);	
 	}
+	
+	public void limpiar() {
+		textNombre.setText("");
+			textApellido.setText("");
+			textTelefono.setText("");
+			textUser.setText("");
+			textPassword.setText("");
+			Visible.setText("");
+	}
+			
+			
+			
+		
+	
 }

@@ -15,6 +15,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JInternalFrame;
 import modelo.Cliente;
 
+/*
+ * @author Angel Miguel de la Rosa
+*/
 public class NewCliente extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -124,40 +127,8 @@ public class NewCliente extends JInternalFrame {
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textNombre.getText().isEmpty()|| textApellido.getText().isEmpty()|| textTelefono.getText().isEmpty()||
-						textCedula.getText().isEmpty()|| textDireccion.getText().isEmpty()){
-					
-					JOptionPane.showMessageDialog(null, "Complete todos los campos");
-					
-				}else {
-                                    Ctrl_Cliente controlCliente = new Ctrl_Cliente();
-                                    
-                                        if(!controlCliente.clienteExistente(textCedula)){
-                                            
-                                            Cliente nuevoCliente = new Cliente();
-                                            nuevoCliente.setNombre(textNombre.getText().trim());
-                                            nuevoCliente.setApellido(textApellido.getText().trim());
-                                            nuevoCliente.setCedula(textCedula.getText().trim());
-                                            nuevoCliente.setTelefono(textTelefono.getText().trim());
-                                            nuevoCliente.setDireccion(textDireccion.getText().trim());
-                                            nuevoCliente.setEstado(1);
-                                        
-                                            if(controlCliente.agregarCliente(nuevoCliente)){
-                                            
-                                                JOptionPane.showMessageDialog(null, "Usuario guardado");
-                                                textNombre.setText("");
-                                                textApellido.setText("");
-                                                textTelefono.setText("");
-                                                textCedula.setText("");
-                                                textDireccion.setText("");
-                                            }
-					
-                                        }else{
-                                            
-                                            JOptionPane.showMessageDialog(null, "Este cliente ya existe");
-                                        }
-                                  
-				}
+				Ctrl_Cliente cliente = new Ctrl_Cliente();
+				cliente.guardar(null, textNombre, textApellido, textCedula, textTelefono, textDireccion);
 				
 			}
 		});
