@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.Reportes;
 import javax.swing.JDesktopPane;
 
 /**
@@ -219,21 +220,41 @@ public class Menu extends javax.swing.JFrame {
         mItem_reporteCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_reporteCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reporte1.png"))); // NOI18N
         mItem_reporteCliente.setText("Reporte Clientes");
+        mItem_reporteCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_reporteClienteActionPerformed(evt);
+            }
+        });
         menu_Reporte.add(mItem_reporteCliente);
 
         mItem_reporteCategorias.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_reporteCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reporte1.png"))); // NOI18N
         mItem_reporteCategorias.setText("Reporte Categorias");
+        mItem_reporteCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_reporteCategoriasActionPerformed(evt);
+            }
+        });
         menu_Reporte.add(mItem_reporteCategorias);
 
         mItem_reporteProductos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_reporteProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reporte1.png"))); // NOI18N
         mItem_reporteProductos.setText("Reporte Productos");
+        mItem_reporteProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_reporteProductosActionPerformed(evt);
+            }
+        });
         menu_Reporte.add(mItem_reporteProductos);
 
         mItem_reporteVentas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_reporteVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reporte1.png"))); // NOI18N
         mItem_reporteVentas.setText("Reporte Ventas");
+        mItem_reporteVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_reporteVentasActionPerformed(evt);
+            }
+        });
         menu_Reporte.add(mItem_reporteVentas);
 
         jMenuBar1.add(menu_Reporte);
@@ -354,6 +375,26 @@ public class Menu extends javax.swing.JFrame {
         Login login = new Login();
         login.setVisible(true);
     }//GEN-LAST:event_mItem_cerrarSesionActionPerformed
+
+    private void mItem_reporteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_reporteClienteActionPerformed
+        Reportes reporte = new Reportes();
+        reporte.reporteClientes();
+    }//GEN-LAST:event_mItem_reporteClienteActionPerformed
+
+    private void mItem_reporteProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_reporteProductosActionPerformed
+        Reportes reporte = new Reportes();
+        reporte.reporteProductos();
+    }//GEN-LAST:event_mItem_reporteProductosActionPerformed
+
+    private void mItem_reporteCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_reporteCategoriasActionPerformed
+        Reportes reporte = new Reportes();
+        reporte.reporteCategorias();
+    }//GEN-LAST:event_mItem_reporteCategoriasActionPerformed
+
+    private void mItem_reporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_reporteVentasActionPerformed
+        Reportes reporte = new Reportes();
+        reporte.reporteVentas();
+    }//GEN-LAST:event_mItem_reporteVentasActionPerformed
 
 //    /**
 //     * @param args the command line arguments
