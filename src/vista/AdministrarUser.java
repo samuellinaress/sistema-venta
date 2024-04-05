@@ -1,7 +1,5 @@
 package vista;
-import java.awt.EventQueue;
 
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,14 +12,11 @@ import javax.swing.JScrollPane;
 import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,21 +42,21 @@ public class AdministrarUser extends JInternalFrame {
 	private JTextField textUser;
 	private JTextField textTelefono;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdministrarUser frame = new AdministrarUser();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					AdministrarUser frame = new AdministrarUser();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -228,7 +223,7 @@ public class AdministrarUser extends JInternalFrame {
 	public void cargarDatosUsuario() {
 		try {
 		Connection con = conexion.conectar();
-		java.sql.Statement st = con.createStatement();
+		Statement st = con.createStatement();
 		
 		ResultSet rSet = st.executeQuery("select idUsuario, nombre, apellido, usuario, password, telefono,estado from usuario");
 		
