@@ -1,9 +1,15 @@
 package vista;
 import java.awt.EventQueue;
 
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import conexion.conexion;
+import controlador.Ctrl_Usuario;
+
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import javax.swing.JTable;
@@ -13,19 +19,27 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JInternalFrame;
 
+/**
+* @author Angel Miguel de la Rosa
+*/
 public class AdministrarUser extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private JScrollPane scrollPane;
 	private DefaultTableModel modo;
 	private JTextField textApellido;
 	private JTextField textPass;
@@ -33,28 +47,28 @@ public class AdministrarUser extends JInternalFrame {
 	private JTextField textUser;
 	private JTextField textTelefono;
 
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					AdministrarUser frame = new AdministrarUser();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AdministrarUser frame = new AdministrarUser();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the frame.
 	 */
 	public AdministrarUser() {
-                super("Adiministrar Usuarios",false,true,false,true);
-		setDefaultCloseOperation(AdministrarUser.DISPOSE_ON_CLOSE);
+	    setClosable(true);
+		setIconifiable(true);
 		setBounds(100, 100, 799, 402);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(64, 128, 128));
@@ -67,35 +81,31 @@ public class AdministrarUser extends JInternalFrame {
 		panel.setBounds(10, 42, 765, 183);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		modo = new DefaultTableModel(
-				new Object[][] {,},
-				new String[] {"IdUsuario","Nombre", "Apellido", "Usuario", "Password","Telefono"}
-		);
-		JScrollPane scrollPane = new JScrollPane();
+		
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 10, 745, 162);
 		panel.add(scrollPane);
 		
-		table = new JTable(new DefaultTableModel(
+		modo = new DefaultTableModel(
 			new Object[][] {
-				{"1", "Angel", "de la Rosa", "Angel27", "1234", "829"},
-				{"2", "Pepe", "Tito", "pepito", "1234", "809"},
-				{"3", "Juan", "Antonio", "uan43", "1234", "849"},
 			},
 			new String[] {
 				"IdUsuario", "Nombre", "Apellido", "Usuario", "Password", "Telefono"
 			}
-		));
+		);
+		table = new JTable(modo);
+		
+		table.setFillsViewportHeight(true);
 		scrollPane.setViewportView(table);
-		// Agregar listener para capturar la selección de la tabla
-        table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int filaSeleccionada = table.getSelectedRow();
-                if (filaSeleccionada >= 0) {
-                    cargarDatosSelec(filaSeleccionada);
-                }
-            }
-        });
+		 table.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+	                int filaSeleccionada = table.getSelectedRow();
+	                if (filaSeleccionada >= 0) {
+	                    cargarDatosSelec(filaSeleccionada);
+	                }
+	            }
+	        });
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 0, 0));
@@ -177,14 +187,11 @@ public class AdministrarUser extends JInternalFrame {
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 int filaSeleccionada = table.getSelectedRow();
-			        if (filaSeleccionada >= 0) {
-			            table.setValueAt(textNombre.getText(), filaSeleccionada, 1);
-			            table.setValueAt(textApellido.getText(), filaSeleccionada, 2);
-			            table.setValueAt(textUser.getText(), filaSeleccionada, 3);
-			            table.setValueAt(textPass.getText(), filaSeleccionada, 4);
-			            table.setValueAt(textTelefono.getText(), filaSeleccionada, 5);
-			}
+				Ctrl_Usuario ctrl_Usuario =new Ctrl_Usuario();
+				ctrl_Usuario.actualizar(table, textNombre, textApellido, textUser, textPass, textTelefono);;
+			limpiarTabla(modo);
+			cargarDatosUsuario();
+			limpiar();	 
 			}
 		});
 		btnActualizar.setForeground(new Color(255, 255, 255));
@@ -196,15 +203,12 @@ public class AdministrarUser extends JInternalFrame {
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			       int filaSeleccionada = table.getSelectedRow();
-					  if (filaSeleccionada >= 0) {
-						  DefaultTableModel modelo = (DefaultTableModel) table.getModel();
-						  modelo.removeRow(filaSeleccionada);
-						  } else {
-						  // en caso de no selecionar una fila para eliminar
-						  JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
-						  }
-					
+				Ctrl_Usuario ctrl_Usuario =new Ctrl_Usuario();
+				ctrl_Usuario.eliminar(table);
+				limpiarTabla(modo);
+				cargarDatosUsuario();
+				limpiar();	   
+						
 			}
 		});
 		btnEliminar.setForeground(new Color(255, 255, 255));
@@ -212,16 +216,75 @@ public class AdministrarUser extends JInternalFrame {
 		btnEliminar.setBackground(new Color(255, 0, 0));
 		btnEliminar.setBounds(142, 78, 112, 21);
 		panel_2.add(btnEliminar);
+        
+		cargarDatosUsuario();
 	}
-	//cargar datos seleccionados
+	/*
+	 * **************************************
+	 * Metodo para cargar datos de usuarios *
+	 ****************************************
+	 */
 	
-	public void cargarDatosSelec(int filaSeleccionada) {
-	        textNombre.setText((String) table.getValueAt(filaSeleccionada, 1));
-	        textApellido.setText((String) table.getValueAt(filaSeleccionada, 2));
-	        textUser.setText((String) table.getValueAt(filaSeleccionada, 3));
-	        textPass.setText((String) table.getValueAt(filaSeleccionada, 4));
-	        textTelefono.setText((String) table.getValueAt(filaSeleccionada, 5));
-	    
+	public void cargarDatosUsuario() {
+		try {
+		Connection con = conexion.conectar();
+		java.sql.Statement st = con.createStatement();
+		
+		ResultSet rSet = st.executeQuery("select idUsuario, nombre, apellido, usuario, password, telefono,estado from usuario");
+		
+		while (rSet.next()) {
+			
+			modo.addRow(new Object [] {rSet.getInt("idUsuario"),rSet.getString("nombre"),rSet.getString("apellido"),rSet.getString("usuario"),rSet.getString("password"),rSet.getString("telefono"),rSet.getString("estado")});
+			
+			
+			
+			}
+			con.close();
+			
+		}catch(SQLException e) {
+			System.out.println("Error al cargar la tabla usuario" + e);
+			
+		}
+				
+	}
+	/*
+	 * *******************************************
+	 * Metodo para cargar datos de seleccionados *
+	 *********************************************
+	 */
+	
+		public void cargarDatosSelec(int filaSeleccionada) {
+		        textNombre.setText((String) table.getValueAt(filaSeleccionada, 1));
+		        textApellido.setText((String) table.getValueAt(filaSeleccionada, 2));
+		        textUser.setText((String) table.getValueAt(filaSeleccionada, 3));
+		        textPass.setText((String) table.getValueAt(filaSeleccionada, 4));
+		        textTelefono.setText((String) table.getValueAt(filaSeleccionada, 5));
+		} 
+		
+		/*
+		 ********************************
+		 * Metodo para limpiar la tabla *
+		 ********************************
+		 */
+		public void limpiarTabla(DefaultTableModel model) {
+           while (model.getRowCount() > 0) {
+        	   model.removeRow(0);
+        	   }
+           }
+		 /*
+		 **********************
+		 * Metodo para limpiar *
+		 ***********************
+		 */ 
+		public void limpiar() {
+			textNombre.setText("");
+			textApellido.setText("");
+			textUser.setText("");
+			textPass.setText("");
+			textTelefono.setText("");
+		}
 		
 	}
-}
+		
+	
+
