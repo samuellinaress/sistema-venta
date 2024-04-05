@@ -267,6 +267,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte Clientes"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItem_reporteClienteActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mItem_reporteCategorias">
               <Properties>
@@ -278,6 +281,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte Categorias"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItem_reporteCategoriasActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mItem_reporteProductos">
               <Properties>
@@ -289,6 +295,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte Productos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItem_reporteProductosActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mItem_reporteVentas">
               <Properties>
@@ -300,6 +309,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte Ventas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItem_reporteVentasActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
