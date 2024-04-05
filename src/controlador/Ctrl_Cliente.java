@@ -15,7 +15,7 @@ import modelo.Cliente;
  *
  * @author Samuel Linares
  */
-public class Ctrl_Cliente {
+public class Ctrl_Cliente implements iCRUD{
     
     //Metodo para agregar clientes
     
@@ -65,7 +65,8 @@ public class Ctrl_Cliente {
     }
     
   //Metodo para guardar cliente
-    public void guardar(javax.swing.JTable table, javax.swing.JTextField textNombre, javax.swing.JTextField textApellido, javax.swing.JTextField textCedula, javax.swing.JTextField textTelefono, javax.swing.JTextField textDireccion) {
+    @Override
+    public void guardar(javax.swing.JTextField textNombre, javax.swing.JTextField textApellido, javax.swing.JTextField textCedula, javax.swing.JTextField textTelefono, javax.swing.JTextField textDireccion) {
     	if(textNombre.getText().isEmpty()|| textApellido.getText().isEmpty()|| textTelefono.getText().isEmpty()||
 				textCedula.getText().isEmpty()|| textDireccion.getText().isEmpty()){
 			
@@ -109,6 +110,7 @@ public class Ctrl_Cliente {
    	 * Metodo para actualizar cliente *
    	 **********************************
    	 */
+       @Override
        public void actualizar(javax.swing.JTable table, javax.swing.JTextField textNombre, javax.swing.JTextField textApellido, javax.swing.JTextField textCedula, javax.swing.JTextField textTelefono, javax.swing.JTextField textDireccion) {
            try {
                Connection con = conexion.conectar();
@@ -148,6 +150,7 @@ public class Ctrl_Cliente {
    	 * Metodo para eliminar cliente *
    	 ********************************
    	 */
+       @Override
        public void eliminar(javax.swing.JTable table) {
            try {
                Connection con = conexion.conectar();
@@ -173,4 +176,6 @@ public class Ctrl_Cliente {
                JOptionPane.showMessageDialog(null, "Error al eliminar cliente: " + e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
            }
        }
+
+   
 }

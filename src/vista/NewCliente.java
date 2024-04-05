@@ -128,7 +128,7 @@ public class NewCliente extends JInternalFrame {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ctrl_Cliente cliente = new Ctrl_Cliente();
-				cliente.guardar(null, textNombre, textApellido, textCedula, textTelefono, textDireccion);
+				cliente.guardar(textNombre, textApellido, textCedula, textTelefono, textDireccion);
 				
 			}
 		});

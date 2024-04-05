@@ -8,14 +8,14 @@ import java.sql.Statement;
 import conexion.conexion;
 import javax.swing.JOptionPane;
 
-import Interfaz.stock;
+//import vista.stock;
 import modelo.Usuario;
 
 /**
  *
  * @author Samuel Linares
  */
-public class Ctrl_Usuario {
+public class Ctrl_Usuario implements iCRUD{
     
     //Metodo para iniciar seccion
     public boolean Login(Usuario usuario){
@@ -78,7 +78,7 @@ public class Ctrl_Usuario {
     
     /*
      *******************************************************************
-     * Metodo para revisar si el usuario ya esta reguitrado en la BBDD *
+     * Metodo para revisar si el usuario ya esta registrado en la BBDD *
      *******************************************************************
      */
     public boolean existeUsuario(String usuario){
@@ -109,6 +109,7 @@ public class Ctrl_Usuario {
 	 * Metodo para guardar usuario *
 	 *******************************
 	 */
+        @Override
 	public void guardar(javax.swing.JTextField textNombre, javax.swing.JTextField textApellido, javax.swing.JTextField textUser, javax.swing.JTextField textPassword, javax.swing.JTextField textTelefono) {
 		if(textNombre.getText().isEmpty()|| textApellido.getText().isEmpty()|| textTelefono.getText().isEmpty()||
 				textUser.getText().isEmpty()|| textPassword.getText().isEmpty()){
@@ -147,6 +148,7 @@ public class Ctrl_Usuario {
 	 * Metodo para actualizar usuarios *
 	 ***********************************
 	 */
+    @Override
     public void actualizar(javax.swing.JTable table, javax.swing.JTextField textNombre, javax.swing.JTextField textApellido, javax.swing.JTextField textUser, javax.swing.JTextField textPass, javax.swing.JTextField textTelefono) {
         try {
             Connection con = conexion.conectar();
@@ -186,6 +188,7 @@ public class Ctrl_Usuario {
 	 * Metodo para eliminar usuarios *
 	 *********************************
 	 */
+    @Override
     public void eliminar(javax.swing.JTable table) {
         try {
             Connection con = conexion.conectar();

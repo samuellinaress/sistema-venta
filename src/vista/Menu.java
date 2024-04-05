@@ -263,6 +263,11 @@ public class Menu extends javax.swing.JFrame {
         mItem_cerrarSesion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         mItem_cerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar-sesion.png"))); // NOI18N
         mItem_cerrarSesion.setText("Cerrar Sesion");
+        mItem_cerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItem_cerrarSesionActionPerformed(evt);
+            }
+        });
         menu_CerrarSesion.add(mItem_cerrarSesion);
 
         jMenuBar1.add(menu_CerrarSesion);
@@ -343,6 +348,12 @@ public class Menu extends javax.swing.JFrame {
         menu_interno.add(factura);
         factura.setVisible(true);
     }//GEN-LAST:event_mItem_nuevaVentaActionPerformed
+
+    private void mItem_cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_cerrarSesionActionPerformed
+        this.dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_mItem_cerrarSesionActionPerformed
 
 //    /**
 //     * @param args the command line arguments
