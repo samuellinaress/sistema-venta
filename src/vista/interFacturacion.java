@@ -1,3 +1,4 @@
+
 package vista;
 // Autor: Angel Naut
 import java.awt.EventQueue;
@@ -21,6 +22,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -54,6 +56,8 @@ public class interFacturacion extends JInternalFrame {
 	private DetalleVenta producto;
 	
 	private int idCliente = 0; // id del cliente
+	
+	
 	
 	private int idProducto = 0;
 	private String nombre = "";
@@ -750,6 +754,18 @@ public class interFacturacion extends JInternalFrame {
         } catch (SQLException e) {
             System.out.println("Error al restar cantidad 1, " + e);
         }
+        try {
+        	Connection cn = conexion.conectar ();
+        	PreparedStatement consulta = cn.prepareStatement("update producto set cantidad=? where idProducto = '" + idProducto + "'");
+            int catidadNueva = cantidadProductosBaseDeDatos - cantidad;
+			consulta.setInt(1, catidadNueva);
+			 if(consulta.executeUpdate() > 0){
+				 
+	            }
+	            cn.close();
+	        } catch (SQLException e) {
+	            System.out.println("Error al restar cantidad 2, " + e);
+	        }
     }
-    
+	  
 }
