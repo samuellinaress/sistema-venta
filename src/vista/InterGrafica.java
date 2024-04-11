@@ -25,7 +25,7 @@ public class InterGrafica extends JInternalFrame {
     private static final long serialVersionUID = 1L;
 
     public InterGrafica(String fechainicioString, String fechafinalString) {
-        setTitle("Historial de ventas");
+        super("Grafica" , false, true, false,true);
         setSize(new Dimension(650, 550));
         getContentPane().setLayout(null);
 
@@ -33,6 +33,7 @@ public class InterGrafica extends JInternalFrame {
         lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
         lblNewLabel.setBounds(186, 0, 211, 42);
         getContentPane().add(lblNewLabel);
+        
     }
 
     @Override

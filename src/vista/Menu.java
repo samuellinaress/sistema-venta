@@ -2,6 +2,8 @@ package vista;
 
 import controlador.Reportes;
 import javax.swing.JDesktopPane;
+import static vista.Historial.fechafinalString;
+import static vista.Historial.fechainicioString;
 
 /**
  *
@@ -362,6 +364,10 @@ public class Menu extends javax.swing.JFrame {
         Historial historial = new Historial();
         menu_interno.add(historial);
         historial.setVisible(true);
+        
+//        InterGrafica interGraficaVentas = new InterGrafica(fechainicioString, fechafinalString);
+//        menu_interno.add(interGraficaVentas);
+//        interGraficaVentas.setVisible(true);
     }//GEN-LAST:event_mItem_verHistorialActionPerformed
 
     private void mItem_nuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItem_nuevaVentaActionPerformed

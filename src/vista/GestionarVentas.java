@@ -1,5 +1,6 @@
 package vista;
 
+import conexion.conexion;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -7,9 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -144,4 +147,32 @@ public class GestionarVentas extends JInternalFrame {
 		panel_3.add(btnActualizar_1);
 
 	}
+//        public void cargarDatosCliente() {
+//		try {
+//		Connection con = conexion.conectar();
+//		java.sql.Statement st = con.createStatement();
+//		
+//		ResultSet rSet = st.executeQuery("select idCliente, nombre, apellido, cedula, telefono, direccion,estado from cliente");
+//		
+//		while (rSet.next()) {
+//			
+//			modo.addRow(new Object [] {rSet.getInt("idCliente"),rSet.getString("nombre"),rSet.getString("apellido"),rSet.getString("cedula"),rSet.getString("telefono"),rSet.getString("direccion"),rSet.getString("estado")});
+//			
+//			
+//			
+//			}
+//			con.close();
+//			
+//		}catch(SQLException e) {
+//			System.out.println("Error al cargar la tabla cliente" + e);
+//			
+//		}
+//				
+//	}
+//        
+//        public void limpiarTabla(DefaultTableModel model) {
+//           while (model.getRowCount() > 0) {
+//        	   model.removeRow(0);
+//        	   }
+//           }
 }
